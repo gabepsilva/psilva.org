@@ -13,4 +13,4 @@ I care about work that has impact. Sometimes that's reducing over-permissive acc
 
 When I'm not in configs or pipelines, I'm usually reading, tinkering, or exploring. Fluent in English and Portuguese, get by in Spanish.
 
-Find me on [LinkedIn](https://linkedin.com/in/gabrielpe) or [GitHub](https://github.com/gabepsilva), or reach out at gabrielpe@gmail.com. Projects, roles, technical conversations, all good.
+Find me on [LinkedIn](https://linkedin.com/in/gabrielpe) or [GitHub](https://github.com/gabepsilva), or reach out at psilva.org@psilva.org. Projects, roles, technical conversations, all good.
