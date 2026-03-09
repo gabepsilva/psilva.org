@@ -1,0 +1,38 @@
+baseURL = 'https://psilva.org/'
+languageCode = 'en-us'
+title = 'psilva.org'
+theme = 'kong-htop'
+paginate = 10
+pluralizelisttitles = false
+
+[params]
+    title = "psilva.org"
+    brand = "psilva.org"
+    author_name = ""
+    description = "A beautiful blog powered by Kong-Htop theme"
+    dark_mode = true
+    mainSections = ["posts"]
+
+    menu = [
+        {Name = "About", URL = "/about/", HasChildren = false},
+        {Name = "Posts", URL = "/posts/", Pre = "Recent", HasChildren = true, Limit = 5},
+        {Name = "Categories", URL = "/categories/", HasChildren = false},
+        {Name = "Tags", URL = "/tags/", HasChildren = false},
+    ]
+
+    rss_icon = true
+    rss_section = "posts"
+
+[taxonomies]
+    series = 'series'
+    tags = 'tags'
+    categories = 'categories'
+
+[outputs]
+    home = ["HTML", "RSS", "JSON"]
+    section = ["HTML"]
+    page = ["HTML"]
+
+[outputFormats.SearchIndex]
+    mediaType = "application/json"
+    baseName = "index"
