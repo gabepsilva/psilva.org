@@ -13,6 +13,7 @@ name = "Gabriel Pereira da Silva"
     brand = "psilva.org"
     author_name = "Gabriel Pereira da Silva"
     description = "A beautiful blog powered by Kong-Htop theme"
+    brand_image = "/images/avatar.png"
     dark_mode = true
     mainSections = ["posts"]
     twitter_url = "https://x.com/gabes_tint"
