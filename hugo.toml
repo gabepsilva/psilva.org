@@ -5,10 +5,13 @@ theme = 'kong-htop'
 paginate = 10
 pluralizelisttitles = false
 
+[Author]
+name = "Gabriel Pereira da Silva"
+
 [params]
     title = "psilva.org"
     brand = "psilva.org"
-    author_name = ""
+    author_name = "Gabriel Pereira da Silva"
     description = "A beautiful blog powered by Kong-Htop theme"
     dark_mode = true
     mainSections = ["posts"]
