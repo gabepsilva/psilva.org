@@ -15,6 +15,7 @@ name = "Gabriel Pereira da Silva"
     description = "A beautiful blog powered by Kong-Htop theme"
     dark_mode = true
     mainSections = ["posts"]
+    twitter_url = "https://x.com/gabes_tint"
 
     menu = [
         {Name = "About", URL = "/about/", HasChildren = false},
