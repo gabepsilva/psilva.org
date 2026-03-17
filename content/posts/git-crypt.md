@@ -1,7 +1,7 @@
 +++
 date = '2026-03-17T00:00:00-04:00'
 draft = false
-title = 'Git-Crypt Notes'
+title = 'How to Use git-crypt to Store Secrets Safely in Git'
 tags = ['git', 'dev', 'devops', 'devsecops']
 categories = ['engineering']
 image = "/images/git-Crypt.png"
