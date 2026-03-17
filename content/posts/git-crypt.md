@@ -8,7 +8,7 @@ image = "/images/git-Crypt.png"
 featuredImage = "/images/git-Crypt.png"
 +++
 
-# Git-Crypt Notes
+# How to Use git-crypt to Store Secrets Safely in Git
 
 ## What it is
 
