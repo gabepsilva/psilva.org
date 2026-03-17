@@ -22,6 +22,11 @@ name = "Gabriel Pereira da Silva"
     github_url = "https://github.com/gabepsilva"
     linkedin_url = "https://linkedin.com/in/gabrielpe"
 
+    # Umami analytics (cloud)
+    umami_enabled = true
+    umami_script = "https://cloud.umami.is/script.js"
+    umami_website_id = "e3bc7759-0358-43e9-86ab-ed69a1316ce0"
+
     menu = [
         {Name = "About", URL = "/about/", HasChildren = false},
         {Name = "Posts", URL = "/posts/", Pre = "Recent", HasChildren = true, Limit = 5},
