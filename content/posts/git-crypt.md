@@ -14,7 +14,7 @@ featuredImage = "/images/git-Crypt.png"
 
 `git-crypt` lets you keep secrets in your Git repository while only decrypting them for authorized users.
 
-- Plaintext is committed to Git as encrypted blobs.
+- Plaintext in the working tree is stored in Git as encrypted blobs.
 - Authorized collaborators can automatically decrypt files after checkout.
 - Everyone else sees ciphertext only.
 
@@ -65,6 +65,8 @@ git-crypt add-gpg-user "user@example.com"
 git commit -m "Add git-crypt recipient"
 ```
 
+`git-crypt add-gpg-user` requires that the target public key is already available in the local GPG keyring (import the key before running it).
+
 ### Included benefits of GPG
 
 GPG is the practical default for `git-crypt` teams because it ties access to a real identity you already manage in your keyring.
@@ -78,10 +80,10 @@ GPG is the practical default for `git-crypt` teams because it ties access to a r
 
 ```bash
 git-crypt export-key ./key.txt
-echo "my-key-file" > .git-crypt/keys/...
 ```
 
-> Prefer GPG recipients whenever possible; symmetric keys are harder to rotate and audit.
+> Prefer GPG recipients whenever possible; symmetric keys are harder to rotate and audit.  
+> Distribute the exported key file securely; never edit `.git-crypt` internals manually.
 
 ## Encrypted status and file handling
 
@@ -89,9 +91,11 @@ echo "my-key-file" > .git-crypt/keys/...
 - To force re-encryption after changing patterns:
 
 ```bash
-git add -u
+git-crypt status -f
 git commit -m "Re-encrypt tracked files"
 ```
+
+If the repo is locked or using a symmetric key, ensure it is unlocked first (`git-crypt unlock [<keyfile>]`) so `status -f` can stage encrypted versions.
 
 To check status:
 
@@ -107,20 +111,29 @@ After cloning:
 git-crypt unlock
 ```
 
-If you have the right GPG keys in your keyring, files decrypt automatically.
+With GPG recipients configured, unlock uses your local keyring automatically when your private key is available.  
+With a symmetric key, use:
+
+```bash
+git-crypt unlock /path/to/keyfile
+```
 
 ## Common gotchas
 
 - Ensure `.gitattributes` is committed before sensitive files, or they may already be in history as plaintext.
 - Keep `.git-crypt/` metadata out of the repo root (it is internal; do not edit manually).
-- Rotate keys when team membership changes:
+- Rotate/adjust access when team membership changes, and re-encrypt current files:
 
 ```bash
+git-crypt add-gpg-user "new-user@example.com"
 git-crypt lock
 git-crypt unlock
 git add -u
-git commit -m "Rotate git-crypt keys"
+git commit -m "Re-encrypt after recipient change"
 ```
+
+- `git-crypt` does not provide a `remove-gpg-user`/`del-gpg-user` command, so there is no built-in recipient revocation. This applies to both GPG and symmetric workflows.
+- `git-crypt` does not rewrite past commits, so removing access cannot retroactively protect data already in history. Ensure no sensitive plaintext was ever committed before `.gitattributes` matched those paths.
 
 ## Useful references
 
