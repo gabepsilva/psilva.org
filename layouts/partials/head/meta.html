@@ -24,19 +24,18 @@
   {{ .Scratch.Add "title" .LinkTitle }}
 {{ end }}
 
+{{ $og_image_path := "" }}
+{{ if .Site.Params.og_image }}
+  {{ $og_image_path = .Site.Params.og_image }}
+{{ else if .Params.image }}
+  {{ $og_image_path = .Params.image }}
+{{ else }}
+  {{ $og_image_path = .Site.Params.brand_image }}
+{{ end }}
+
 {{ $og_image := .Resources.Get .Params.image }}
-{{ if not ( $og_image ) }}
-  {{ $og_image_path := "" }}
-  {{ if .Site.Params.og_image }}
-    {{ $og_image_path = .Site.Params.og_image }}
-  {{ else if .Params.image }}
-    {{ $og_image_path = .Params.image }}
-  {{ else }}
-    {{ $og_image_path = .Site.Params.brand_image }}
-  {{ end }}
-  {{ if $og_image_path }}
-    {{ $og_image = resources.Get $og_image_path }}
-  {{ end }}
+{{ if and (not $og_image) $og_image_path }}
+  {{ $og_image = resources.Get $og_image_path }}
 {{ end }}
 {{ with $og_image }}
   {{ if or ( lt .Width 600 ) ( lt .Height 315 ) }}
@@ -45,6 +44,13 @@
     {{ warnf "og:image over recommended size of 600x315 to 1200x630" }}
     {{ $og_image = $og_image.Fit "1200x630" }}
   {{ end }}
+{{ end }}
+
+{{ $og_image_url := "" }}
+{{ if $og_image }}
+  {{ $og_image_url = $og_image.Permalink }}
+{{ else if $og_image_path }}
+  {{ $og_image_url = absURL $og_image_path }}
 {{ end }}
 
 <!-- Title Tags -->
@@ -67,15 +73,18 @@
 <meta name="url" content="{{ .Permalink }}" />
 <meta name="twitter:url" content="{{ .Permalink }}" />
 <meta property="og:url" content="{{ .Permalink }}" />
+<meta name="twitter:card" content="{{ if $og_image_url }}summary_large_image{{ else }}summary{{ end }}" />
 
 <!-- Image Tags -->
+{{ if $og_image_url }}
+<meta itemprop="image" content="{{ $og_image_url }}" />
+<meta property="og:image" content="{{ $og_image_url }}" />
+<meta name="twitter:image" content="{{ $og_image_url }}" />
+<meta name="twitter:image:src" content="{{ $og_image_url }}" />
 {{ if $og_image }}
-<meta itemprop="image" content="{{ $og_image.Permalink }}" />
-<meta property="og:image" content="{{ $og_image.Permalink }}" />
 <meta property="og:image:width" content="{{ $og_image.Width }}" />
 <meta property="og:image:height" content="{{ $og_image.Height }}" />
-<meta name="twitter:image" content="{{ $og_image.Permalink }}" />
-<meta name="twitter:image:src" content="{{ $og_image.Permalink }}" />
+{{ end }}
 {{ end }}
 
 <!-- Date Tags -->
