@@ -1,0 +1,23 @@
+{{ define "main" -}}
+{{ partial "home/hero.html" . }}
+
+{{ if .Site.Params.hero.enabled }}
+<h2 class="home-feed__heading">{{ .Site.Params.hero.feed_title | default "Recent" }}</h2>
+{{ end }}
+
+<div class="posts">
+    {{ $frontPageTypes := default (slice "posts") .Site.Params.front_page_content }}
+    {{ range (.Paginate (where .Site.RegularPages "Type" "in" $frontPageTypes)).Pages }}
+    <article class="post">
+        {{ partial "post/info.html" . }}
+        {{ .Summary }}
+        {{ if .Truncated }}
+        <div class="read-more-link">
+            <a href="{{ .RelPermalink }}">Read More…</a>
+        </div>
+        {{ end }}
+    </article>
+    {{- end }}
+</div>
+{{ partial "pagination.html" . }}
+{{- end }}

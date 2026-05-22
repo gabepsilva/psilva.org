@@ -37,6 +37,15 @@ name = "Gabriel Pereira da Silva"
     rss_icon = true
     rss_section = "posts"
 
+    [params.hero]
+    enabled = true
+    headline = "Platform · DevSecOps · Toronto"
+    tagline = "Practical notes on pipelines, security, and shipping software — from design through production."
+    show_pinned = true
+    pinned_limit = 3
+    pinned_title = "Start here"
+    feed_title = "Recent"
+
 [taxonomies]
     series = 'series'
     tags = 'tags'

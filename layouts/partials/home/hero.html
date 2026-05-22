@@ -1,0 +1,36 @@
+{{ if .Site.Params.hero.enabled }}
+{{ $limit := default 3 .Site.Params.hero.pinned_limit }}
+{{ $pinned := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
+{{ $pinned = sort $pinned "Date" "desc" | first $limit }}
+<section class="home-hero" aria-labelledby="home-hero-heading">
+  <p class="home-hero__eyebrow">{{ .Site.Params.author_name }}</p>
+  <h1 id="home-hero-heading" class="home-hero__headline">{{ .Site.Params.hero.headline }}</h1>
+  <p class="home-hero__tagline">{{ .Site.Params.hero.tagline | default .Site.Params.description }}</p>
+  <nav class="home-hero__actions" aria-label="Primary">
+    <a class="home-hero__btn home-hero__btn--primary" href="{{ "/about/" | relURL }}">About</a>
+    <a class="home-hero__btn" href="{{ "/posts/" | relURL }}">All posts</a>
+    <a class="home-hero__btn" href="{{ "/search/" | relURL }}">Search <span class="home-hero__kbd">Ctrl+K</span></a>
+  </nav>
+  {{ if and .Site.Params.hero.show_pinned $pinned }}
+  <div class="home-hero__pinned">
+    <h2 class="home-hero__pinned-title">{{ .Site.Params.hero.pinned_title | default "Start here" }}</h2>
+    <ul class="home-hero__cards">
+      {{ range $pinned }}
+      {{ $page := . }}
+      <li>
+        <a class="home-hero__card" href="{{ $page.RelPermalink }}">
+          {{ with $page.Params.featuredImage }}
+          <img class="home-hero__card-img" src="{{ . }}" alt="{{ $page.Title }}" loading="lazy" width="400" height="210">
+          {{ end }}
+          <span class="home-hero__card-body">
+            <span class="home-hero__card-title">{{ $page.Title }}</span>
+            <span class="home-hero__card-meta">{{ $page.ReadingTime }} min read · {{ $page.Date.Format "Jan 2, 2006" }}</span>
+          </span>
+        </a>
+      </li>
+      {{ end }}
+    </ul>
+  </div>
+  {{ end }}
+</section>
+{{ end }}

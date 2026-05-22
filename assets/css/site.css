@@ -1,0 +1,21 @@
+/* Site-specific styles (psilva.org) */
+
+/* /posts timeline: theme animation with fill-mode backwards hides list until run */
+.posts-timeline .year-section {
+    animation: none;
+    opacity: 1;
+    transform: none;
+}
+
+.post-featured-image {
+    margin: 0 0 1.75rem;
+}
+
+.post-featured-image img {
+    display: block;
+    width: 100%;
+    max-height: 320px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid var(--table-border-color);
+}
