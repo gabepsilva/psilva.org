@@ -8,8 +8,6 @@ image = "/images/git-Crypt.png"
 featuredImage = "/images/git-Crypt.png"
 +++
 
-# How to Use git-crypt to Store Secrets Safely in Git
-
 ## What it is
 
 `git-crypt` lets you keep secrets in your Git repository while only decrypting them for authorized users.
@@ -23,6 +21,8 @@ featuredImage = "/images/git-Crypt.png"
 - API tokens, credentials, and service configs in version control
 - Shared environment templates and deployment secrets
 - Team workflows where full-file encryption is too heavy for ad-hoc secret management
+
+<!--more-->
 
 ## Install
 

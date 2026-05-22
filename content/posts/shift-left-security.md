@@ -4,11 +4,15 @@ draft = false
 title = 'Shift-left security (and shift-left without the security part)'
 tags = ['devops', 'devsecops', 'security', 'platform']
 categories = ['engineering']
+image = "/images/shift-left-security-banner.png"
+featuredImage = "/images/shift-left-security-banner.png"
 +++
 
 If you build pipelines, own Terraform, or get pulled into release-week fire drills, you have probably heard "shift-left" in a standup, a job post, or a security review. It is not a product name. It is a way of saying: do this work earlier, while you are still in design, a PR, or CI, instead of handing it to security (or ops) at the door to production.
 
 That framing shows up a lot in DevSecOps and platform roles. This post is what people usually mean by it, plus the same idea when the topic is not security.
+
+<!--more-->
 
 Shift-left security means doing security work earlier in how you build and ship software. Not mainly at the end, right before release, or after an incident.
 

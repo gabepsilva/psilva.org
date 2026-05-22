@@ -10,6 +10,8 @@ featuredImage = "/images/diff-unified-react-banner.png"
 
 You can show unified-diff style changes (like `git diff`) between two strings in any web app — for example, comparing a saved baseline to the current value in a form or editor. Here’s a minimal approach using one dependency and a bit of React.
 
+<!--more-->
+
 ### What you get
 
 - **Unified format**: each line prefixed with `+` (added), `-` (removed), or two spaces `  ` (unchanged).

@@ -28,19 +28,12 @@
 {{/* 新增: 随机访问文章功能 */}}
 {{ $js = $js | append (resources.Get "js/random-post.js") }}
 
-{{/* 新增: 搜索功能 - 仅在搜索页面加载 */}}
-{{ if eq .Type "search" }}
-    {{ $js = $js | append (resources.Get "js/search.js") }}
-{{ end }}
 
 {{ $js_bundle := $js | resources.Concat "js/bundle.js" | minify | fingerprint }}
 
 <script defer language="javascript" type="text/javascript" src="{{ $js_bundle.RelPermalink }}"></script>
 
 {{/* Fuse.js CDN - 仅在搜索页面加载 */}}
-{{ if eq .Type "search" }}
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
-{{ end }}
 
 
 {{ if .Site.Params.plausible }}
